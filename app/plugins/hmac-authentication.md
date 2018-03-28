@@ -72,6 +72,10 @@ params:
 In order to use the plugin, you first need to create a Consumer to associate
 one or more credentials to.
 
+Note: Please make sure that all the request parameters being used by client to
+create HMAC signature is not updated or removed by any of the Kong plugins
+running before `key-auth`.
+
 ### Create a Consumer
 
 You need to associate a credential to an existing [Consumer][consumer-object]
@@ -142,7 +146,7 @@ the order they appear.
   ASCII space ` `.
 
 2. If the header name is `request-line` then append the HTTP
-  request line, otherwise append the header value.
+  request line(must be in ASCII format), otherwise append the header value.
 
 3. If value is not the last value then append an ASCII newline `\n`.
   The string MUST NOT include a trailing ASCII newline.
